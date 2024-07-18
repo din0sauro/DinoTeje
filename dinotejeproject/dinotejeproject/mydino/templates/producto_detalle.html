@@ -1,0 +1,52 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+{% load bootstrap5 %}
+{% load static %}
+<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand LogoDinoTeje" href="{% url 'index' %}">
+            <img src="{% static 'img/DinoTeje.png' %}" alt="Logo DinoTeje" height="90px" width="auto">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}#productos"><b>Productos</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'raw_product_list' %}"><b>Personaliza</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contacto_lista' %}"><b>Experiencias con DinoTeje</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contacto_nuevo' %}"><b>¡Agrega tu experiencia!</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'ver_carrito' %}"><b>Carrito</b></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<section id="section-detalle" class="container-detalle">
+<div id="container-detalle" class="container-detalle">
+    <h1 id="id-detalle">{{ producto2.name }}</h1>
+    <div class="row">
+        <div class="col-md-6">
+            {% if producto2.image %}
+            <img src="{{ producto2.image.url }}" class="card-img-top" alt="{{ producto2.name }}">
+            {% endif %}
+        </div>
+        <div class="col-md-6">
+            <h2>Descripción</h2>
+            <p>{{ producto2.description }}</p>
+            <h3>Precio: ${{ producto2.price }}</h3>
+            <a href="{% url 'index' %}" class="btn btn-primary">Volver a la lista</a>
+        </div>
+    </div>
+</div>
+</section>
+{% endblock %}

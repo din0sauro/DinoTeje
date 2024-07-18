@@ -1,0 +1,45 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+{% load bootstrap5 %}
+{% load static %}
+<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand LogoDinoTeje" href="{% url 'index' %}">
+            <img src="{% static 'img/DinoTeje.png' %}" alt="Logo DinoTeje" height="90px" width="auto">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'index' %}#productos"><b>Productos</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'raw_product_list' %}"><b>Personaliza</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contacto_lista' %}"><b>Experiencias con DinoTeje</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contacto_nuevo' %}"><b>¡Agrega tu experiencia!</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'ver_carrito' %}"><b>Carrito</b></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+  <div id="formulario" class="container mt-5">
+    <h2>Por favor, rellena el formulario para poder contarnos tu experiencia</h2>
+
+    <form method="POST" class="needs-validation" novalidate>
+      {% csrf_token %}
+      {{ form.as_p }}
+      <button id="enviarboton" type="submit" class="btn btn-primary">Enviar</button> 
+      <a class="btn btn-primary" href="{% url 'index' %}"><b>Volver</b></a>
+    </form>
+    
+  </div>
+{% endblock %}

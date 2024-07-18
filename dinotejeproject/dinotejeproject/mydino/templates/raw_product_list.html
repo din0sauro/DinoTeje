@@ -1,0 +1,61 @@
+{% extends 'base_generic.html' %}
+{% block content %}
+{% load bootstrap5 %}
+{% load static %}
+<body>
+    <nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+        <div class="container-fluid">
+            <a class="navbar-brand LogoDinoTeje" href="{% url 'index' %}">
+                <img src="{% static 'img/DinoTeje.png' %}" alt="Logo DinoTeje" height="90px" width="auto">
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'index' %}#productos"><b>Productos</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'raw_product_list' %}"><b>Personaliza</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contacto_lista' %}"><b>Experiencias con DinoTeje</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'contacto_nuevo' %}"><b>¡Agrega tu experiencia!</b></a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{% url 'ver_carrito' %}"><b>Carrito</b></a>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </nav>
+    <div class="container">
+        <div id="listado" class="listado">
+        <h1>Listado de amigurumis</h1>
+        </div>
+        <div id="personaliza" class="personaliza">
+        <h3>Aquí puedes ver ejemplos de amigurumis que puedo hacer, puedes pedir el tuyo personalizado :)</h3>
+        </div>
+        <div class="row">
+            {% for producto in productos %}
+            <div class="col-md-4">
+                <div class="card">
+                    {% if producto.5 %}
+                    <img src="{{ producto.image.url }}"  class="card-img-top" alt="{{ producto.0 }}">
+                    {% endif %}
+                    <div class="card-body">
+
+                        <b><p class="card-text">${{ producto.2 }}</p></b>
+                        <p class="card-text">{{ producto.3 }}</p>
+                        <p class="card-text">{{ producto.4 }}</p>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+{% endblock %}

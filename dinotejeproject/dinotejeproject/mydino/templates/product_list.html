@@ -1,0 +1,139 @@
+{% load bootstrap5 %}
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>DinoTeje</title>
+    {% bootstrap_css %}
+    <link rel="stylesheet" href="{% static 'css/product_list.css' %}">
+    <style>
+        .fade-in {
+            opacity: 0;
+            transition: opacity 2s ease-in-out; 
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+        }
+    </style>
+</head>
+<body class="fade-in">
+
+<!-- Navbar -->
+<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+    <div class="container-fluid">
+        <a class="navbar-brand LogoDinoTeje" href="{% url 'index' %}">
+            <img src="{% static 'img/DinoTeje.png' %}" alt="Logo DinoTeje" height="90px" width="auto">
+        </a>
+        <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+            <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav ms-auto">
+                <li class="nav-item">
+                    <a class="nav-link" href="#productos"><b>Productos</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'raw_product_list' %}"><b>Personaliza</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contacto_lista' %}"><b>Experiencias con DinoTeje</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'contacto_nuevo' %}"><b>¡Agrega tu experiencia!</b></a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="{% url 'ver_carrito' %}"><b>Carrito</b></a>
+                </li>
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<!--<div id="bienvenida" class="bienvenida">-->
+    
+    <div id="bio" class="container-bio">
+        <h1>¡Te doy la bienvenida a DinoTeje!</h1>
+        </h5>Te cuento un poco sobre mí, DinoTeje es un emprendimiento de Instagram de amigurumis
+            creado a inicios del año 2023. Teniendo como objetivo el compartir 
+            el arte del tejido de pequeños seres como lo son los amigurumis.
+            Me han hecho diversos pedidos personalizados para todos los gustos, ¡nunca se sabe que quiere el siguiente cliente!, esa es la mejor parte, 
+            la variedad de diseños que puedo realizar tanto a pedido como por decisión y gustos propios.
+
+            Aprovecho esta instancia para agradecer al equipo de desarrollo de este proyecto de página web, 
+            del cual tuve la suerte de ser parte, sin embargo, sin mi compañero de trabajo no hubiera sido posible. Muchas gracias por ayudarme a crecer como emprendimiento. 
+            Sin más que añadir, te invito a revisar mis productos :)
+        </>
+    </div>
+</div>
+
+<!-- Carrusel -->
+<div id="carouselExampleControls" class="carousel slide">
+    <div class="carousel-inner">
+        <div class="carousel-item active">
+            <img src="{% static 'img/Captura de pantalla 2024-07-11 161123.png' %}" class="d-block w-100" alt="Imagen 1">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'img/Captura de pantalla 2024-07-11 161139.png' %}" class="d-block w-100" alt="Imagen 2">
+        </div>
+        <div class="carousel-item">
+            <img src="{% static 'img/Captura de pantalla 2024-07-11 161151.png' %}" class="d-block w-100" alt="Imagen 3">
+        </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Anterior</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Siguiente</span>
+    </button>
+</div>
+
+<!-- Lista de Productos -->
+<div class="container mt-5 pt-5" id="productos">
+    <h1 id="titulo-productos">Lista de Productos</h1>
+    <div class="row">
+        {% for producto in productos %}
+        <div class="col-md-4 mb-4">
+            <div class="card">
+                {% if producto.image %}
+                <img src="{{ producto.image.url }}" class="card-img-top" alt="{{ producto.name }}">
+                {% endif %}
+                <div class="card-body">
+                    <h5 class="card-title">{{ producto.name }}</h5>
+                    <p class="card-text">${{ producto.price }}</p>
+                    <a href="{% url 'producto_detalle' producto.pk %}" class="btn btn-info">Ver Detalle</a>
+                    <form method="post" action="{% url 'agregar_al_carrito' producto.pk %}">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-primary mt-2">Agregar al carrito</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+        {% empty %}
+        <p class="text-center">No hay productos disponibles.</p>
+        {% endfor %}
+    </div>
+</div>
+
+<!-- Footer -->
+<footer class="bg-light py-3 text-center">
+    <p>&copy; 2024 DinoTeje. Todos los derechos reservados.</p>
+</footer>
+
+<!-- JavaScript -->
+<script src="{% static 'js/jquery-3.7.1.min.js' %}"></script>
+<script src="{% static 'js/actions.js' %}"></script>
+{% bootstrap_javascript %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-QqlEpPwM1MoMnoBILvT17qPpTEnXmnXtb/HEfIDvfndRGi40hHI3ABy4BdxJSt7A" crossorigin="anonymous"></script>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        document.body.classList.add('visible');
+    });
+</script>
+</body>
+</html>

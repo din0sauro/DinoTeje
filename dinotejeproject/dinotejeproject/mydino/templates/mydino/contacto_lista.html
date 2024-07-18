@@ -1,0 +1,83 @@
+{% extends 'base_generic.html' %}
+{% load bootstrap5 %}
+{% load static %}
+{% block content %}
+<nav class="navbar navbar-expand-lg fixed-top navbar-light bg-light">
+  <div class="container-fluid">
+      <a class="navbar-brand LogoDinoTeje" href="{% url 'index' %}">
+          <img src="{% static 'img/DinoTeje.png' %}" alt="Logo DinoTeje" height="90px" width="auto">
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+          <ul class="navbar-nav ms-auto">
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'index' %}#productos"><b>Productos</b></a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'raw_product_list' %}"><b>Personaliza</b></a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'contacto_lista' %}"><b>Experiencias con DinoTeje</b></a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'contacto_nuevo' %}"><b>¡Agrega tu experiencia!</b></a>
+              </li>
+              <li class="nav-item">
+                  <a class="nav-link" href="{% url 'ver_carrito' %}"><b>Carrito</b></a>
+              </li>
+          </ul>
+      </div>
+  </div>
+</nav>
+
+  <div class="container mt-5">
+   
+    <h2 class="text-center mb-4">Registro de experiencias</h2>
+    <a id="volver-menu" class="btn btn-primary" href="{% url 'index' %}"><b>Volver al menú principal</b></a>
+    
+
+
+
+    <div id="table" class="table-responsive">
+
+      <table class="table  align-middle">
+        
+        <thead class="table">
+       
+          <tr>
+            <th scope="col">Nombre</th>
+         
+            <th scope="col">Mensaje</th>
+
+          
+            <th scope="col" class="text-center"></th>
+         
+          </tr>
+        </thead>
+        <tbody>
+        
+          {% for contacto in contactos %}
+         
+            <tr>
+              <td>{{ contacto.nombre }}</td>
+           
+              <td>{{ contacto.mensaje }}</td>
+             
+              <td class="text-center">
+                
+                <a href="{% url 'contacto_detalle' contacto.pk %}" class="btn btn-info btn-sm m-1"><b>+</b></a>
+               
+              </td>
+            </tr>
+          {% endfor %}
+          
+        </tbody>
+      </table>
+    </div>
+  </div>
+
+{% endblock %}
+
+

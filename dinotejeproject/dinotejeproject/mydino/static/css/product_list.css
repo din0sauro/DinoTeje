@@ -1,0 +1,128 @@
+@import url('https://fonts.googleapis.com/css2?family=Poetsen+One&display=swap');
+* {
+    box-sizing: border-box;
+    font-family: "Poetsen One", sans-serif;
+    color: #060a41;
+}
+
+html, body {
+    height: 100%;
+    margin: 0;
+    padding: 0;
+    background-color: #b7d7f3;
+}
+
+body {
+    background: none;
+    border: none;
+}
+
+.navbar {
+    padding: 0.45rem;
+    background: linear-gradient(to right, #dfade2, #87d5fe);
+}
+
+.navbar-light .navbar-nav .nav-link {
+    color: #555;
+}
+
+.navbar-light .navbar-nav .nav-link:hover {
+    color: #007bff;
+}
+
+.navbar-brand img {
+    max-height: 90px;
+}
+
+.carousel {
+    margin: 1rem auto;
+    width: 70%;
+    height: auto;
+}
+
+.carousel-inner img {
+    width: 70%;
+    height: auto;
+}
+
+.card {
+    border-radius: .375rem;
+    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
+    background-color: #9fcafb;
+}
+
+.card-img-top {
+    border-bottom: 1px solid #ddd;
+}
+
+.card-body {
+    padding: 1rem;
+}
+
+.card-title {
+    font-size: 1.25rem;
+    margin-bottom: .75rem;
+}
+
+.card-text {
+    font-size: 1rem;
+    margin-bottom: .5rem;
+}
+
+footer {
+    background: linear-gradient(to right, #dfade2, #87d5fe);
+}
+
+.carousel {
+    margin-top: 4rem;
+    padding-top: 4rem;
+
+}
+.carousel-inner img {
+    width: 100%;
+    height: auto;
+}
+
+#bienvenida{
+    position: absolute !important;
+    background-color: none;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center; 
+    border: none;
+    z-index: 1000;
+    position: relative; 
+    padding-top: 2.5rem;
+    padding-left: 20rem;
+    padding-right: 20rem;
+    text-shadow: 2px 2px 5px #b088f5;
+ }
+
+.fade-in {
+    opacity: 0;
+    transition: opacity 2s ease-in-out; 
+}
+
+.fade-in.visible {
+    opacity: 1;
+}
+
+
+#productos{
+    justify-content: center; 
+    align-items: center; 
+}
+
+#titulo-productos{
+    text-align: center;
+    align-items: center;
+}
+
+.container-bio {
+    width: 1000px;
+    text-align: center;
+    padding-top: 15%;
+    margin: 0 auto; 
+    text-shadow: 2px 2px 5px #b088f5;
+}
